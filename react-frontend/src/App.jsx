@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import noteService from './services/note'
 
 
 const Entry = ({ heading, body }) => {
@@ -30,14 +31,46 @@ const App = () => {
   const [body, setBody] = useState("")
   const [submittedHeading, setSubmittedHeading] = useState("")
   const [submittedBody, setSubmittedBody] = useState("")
+  const [notes, setNotes] = useState([])
 
   console.log("Heading --> ", heading)
   console.log("Body-> ", body)
+
+  useEffect(() => {
+    noteService
+      .getAll()
+      .then(initialNotes => {
+        setNotes(initialNotes)
+      })
+  }, [])
 
   const handleSubmit = (e) => {
     e.preventDefault()
     setSubmittedHeading(heading)
     setSubmittedBody(body)
+  }
+
+  const Note = ({ notes }) => {
+
+    if (notes) {
+      return (
+
+        <div>
+          {notes.map(note => (
+            <div key={notes.id}>
+              {note.title}{note.content}
+            </div>
+          ))}
+        </div>
+      )
+
+    }
+
+    return (
+      <>
+        <p> Awaiting Notes...</p>
+      </>
+    )
   }
 
   return (
@@ -53,6 +86,8 @@ const App = () => {
       </form>
 
       <Entry heading={submittedHeading} body={submittedBody} />
+
+      <Note notes={notes} />
     </div>
 
   )
