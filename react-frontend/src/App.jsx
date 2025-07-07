@@ -56,6 +56,7 @@ const App = () => {
       return (
 
         <div>
+          <h3>Notes from server</h3>
           {notes.map(note => (
             <div key={notes.id}>
               {note.title}{note.content}

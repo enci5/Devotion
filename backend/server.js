@@ -2,7 +2,10 @@ require('dotenv').config()
 const express = require('express')
 const app = express()
 const Note = require('./models/note')
+const cors = require('cors')
 
+
+app.use(cors())
 app.use(express.json())
 
 app.get('/api/notes', (req, res)=>{
