@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import styles from './Login.module.css'
 
 const Login = () =>{
     const [username, setUsername] = useState('')
@@ -10,23 +11,25 @@ const Login = () =>{
     }
 
     return(
-        <>
-            <form onSubmit={handleLogin}>
+        <div className={styles.loginCard}>
+            <form onSubmit={handleLogin} className={styles.loginForm}>
                 <label htmlFor="name">Username</label>
-                <input id="name" type="text" placeholder="Enter your username" value={username} 
+                <input className="nameInput" id="name" type="text" placeholder="Enter your username" value={username} 
                     onChange={e=>setUsername(e.target.value)}/>
 
                 <label htmlFor="password">Password</label>
-                <input id="password" type="text" placeholder="Enter your password" value={password} 
+                <input className="passwordInput" id="password" type="text" placeholder="Enter your password" value={password} 
                     onChange={e=>setPassword(e.target.value)}/>
 
                 <button type="submit">Log In</button>
+
+                <p> 
+                Don't have an account yet? <Link to="/signup">Sign up</Link>
+                </p> 
             </ form>
 
-            <p> 
-                Don't have an account yet? <Link to="/signup">Sign up</Link>
-            </p> 
-        </>
+            
+        </div>
     )
 }
 
