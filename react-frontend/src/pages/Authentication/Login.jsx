@@ -8,18 +8,20 @@ const Login = () =>{
 
     const handleLogin=(e)=>{
         e.preventDefault()
+        
     }
 
     return(
         <div className={styles.loginCard}>
             <form onSubmit={handleLogin} className={styles.loginForm}>
+
                 <label htmlFor="name">Username</label>
                 <input className="nameInput" id="name" type="text" placeholder="Enter your username" value={username} 
-                    onChange={e=>setUsername(e.target.value)}/>
+                    onChange={e=>setUsername(e.target.value)} required/>
 
                 <label htmlFor="password">Password</label>
                 <input className="passwordInput" id="password" type="text" placeholder="Enter your password" value={password} 
-                    onChange={e=>setPassword(e.target.value)}/>
+                    onChange={e=>setPassword(e.target.value)} required/>
 
                 <button type="submit">Log In</button>
 
