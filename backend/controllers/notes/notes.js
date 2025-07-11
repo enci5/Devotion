@@ -16,6 +16,10 @@ notesRouter.get('/', authenticateToken, (req, res) => {
 
     //Posts only the user has access to
     //res.json(notes.find({}).then(notes=> notes.username === req.username))
+// also include user_id find by user notes since its the primary key
+/*     Note.find({ username: req.user.username }).then(notes => {
+        res.json(notes)
+    }) */
 
 })
 
@@ -30,6 +34,7 @@ notesRouter.post('/', authenticateToken, async (req, res) => {
         content: content
         //Tie the user to the note
         //user: req.user.username
+        //tie user_id since primay key
     })
     try {
         await note.save()
@@ -44,10 +49,12 @@ notesRouter.post('/', authenticateToken, async (req, res) => {
 
 function authenticateToken(req, res, next) {
     const authHeader = req.headers['authorization']
+    // Bearer 'TOKEN'
     const token = authHeader && authHeader.split(' ')[1]
     if (token == null) return res.status(401).json({ error: 'Token not valid' })
 
     jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+        //Take user_id
         if (err) return res.sendStatus(403)
         req.user = user
         next()
