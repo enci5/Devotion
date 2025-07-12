@@ -13,6 +13,7 @@ app.use(express.json())
 app.use('/api/notes', notesRouter)
 app.use('/api/auth', userRouter)
 
+
 const PORT = 3001
 app.listen(PORT, ()=>{
     console.log(`Server runnning on port ${PORT}`)
