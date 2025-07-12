@@ -22,10 +22,16 @@ const CreateNote = () =>{
         })
     }, [])
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
         setSubmittedHeading(heading)
         setSubmittedBody(body)
+        const res = await noteService.create({title:heading, content:body})
+        if(res.success){
+            alert('success')
+        }else{
+            alert('not saved')
+        }
     }
 
     return (

@@ -1,21 +1,29 @@
 import { useState, useEffect } from "react";
+import { signup } from "./authServices";
 
 const Signup = () =>{
-    const[email,setEmail]=useState('')
+    //const[email,setEmail]=useState('')
     const[username, setUsername]=useState('')
     const[password, setPassword]=useState('')
     const[confirmPassword, setConfirmpassword]=useState('')
 
-    const handleSignup = (e) =>{
+    const handleSignup = async(e) =>{
         e.preventDefault()
+        const res = await signup({name:username, password:password})
+        if (res.success){
+            alert('success')
+        }else{
+            alert(`Error: ${res.message}`)
+        }
     }
 
     return(
         <div>
             <form onSubmit={handleSignup}>
+                {/*
                 <label htmlFor="email">Email</label>
                 <input id="email" placeholder="Enter Email" value={email} 
-                onChange={e=>setEmail(e.target.value)} required/>
+                onChange={e=>setEmail(e.target.value)} required/>*/}
 
                 <label htmlFor="name">Username</label>
                 <input id="name" type="text" placeholder="Enter Username" value={username}

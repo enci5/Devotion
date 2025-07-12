@@ -1,18 +1,28 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from './Login.module.css'
+import { login } from "./authServices";
 
 const Login = () =>{
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+    const navigate = useNavigate()
 
-    const handleLogin=(e)=>{
+    const handleLogin= async(e)=>{
         e.preventDefault()
-        
+        const res = await login({name:username, password})
+        if(res.success){
+            alert('Success!')
+            navigate('/')
+        }else{
+            alert('Error')
+        }
     }
 
     return(
-        <div className={styles.loginCard}>
+        <div>
+            <img src="jeff.svg" alt="jeff" className={styles.jeff}/>
+
             <form onSubmit={handleLogin} className={styles.loginForm}>
 
                 <label htmlFor="name">Username</label>
