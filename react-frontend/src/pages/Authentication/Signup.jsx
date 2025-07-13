@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { signup } from "./authServices";
+import styles from './Signup.module.css'
+import { Link } from "react-router-dom";
 
 const Signup = () =>{
     //const[email,setEmail]=useState('')
@@ -19,7 +21,9 @@ const Signup = () =>{
 
     return(
         <div>
-            <form onSubmit={handleSignup}>
+            <form onSubmit={handleSignup} className={styles.signupForm}>
+
+                <img src="jeff.svg" alt="jeff" className={styles.jeff}/>
                 {/*
                 <label htmlFor="email">Email</label>
                 <input id="email" placeholder="Enter Email" value={email} 
@@ -38,6 +42,8 @@ const Signup = () =>{
                 onChange={e=>setConfirmpassword(e.target.value)} required/>
 
                 <button type="submit">Sign up</button>
+
+                <p2>Have an account? <Link to='/Login'>Log in</Link></p2>
             </ form>
         </div>
     )

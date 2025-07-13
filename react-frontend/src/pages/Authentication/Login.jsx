@@ -21,9 +21,9 @@ const Login = () =>{
 
     return(
         <div>
-            <img src="jeff.svg" alt="jeff" className={styles.jeff}/>
-
             <form onSubmit={handleLogin} className={styles.loginForm}>
+
+                <img src="jeff.svg" alt="jeff" className={styles.jeff}/>
 
                 <label htmlFor="name">Username</label>
                 <input className="nameInput" id="name" type="text" placeholder="Enter your username" value={username} 

@@ -20,7 +20,7 @@ const CreateNote = () =>{
         .then(initialNotes => {
             setNotes(initialNotes)
         })
-    }, [])
+    }, [notes])
 
     const handleSubmit = async (e) => {
         e.preventDefault()
