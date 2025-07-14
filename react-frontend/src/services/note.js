@@ -6,27 +6,58 @@ import axios from 'axios'
 
 const baseUrl = 'http://localhost:3001/api/notes'
 
-const getAll = () => {
-    const request = axios.get(baseUrl)
-    return request.then(response => response.data)
+const getAll = (token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
   }
-  
-  const create = newObject => {
-    const request = axios.post(baseUrl, newObject)
-    return request.then(response => response.data)
-  }
-  
-  const remove = (id) =>{
-    console.log("id number", id)
-    const request = axios.delete(`${baseUrl}/${id}`)
-    return request.then(response => response.data)
-    
-  }
+  return axios.get(baseUrl, config)
+    .then(response => {
+      return {
+        success: true,
+        data: response.data
+      }
+    })
+    .catch(error => {
+      return {
+        success: false,
+        data: error.response ? error.response.data : error.message
+      }
+    })
+}
 
-  const update = (id, newObject) => {
-    const request = axios.put(`${baseUrl}/${id}`, newObject)
-    return request.then(response => response.data)
+const create = async (newObject, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
   }
+  try {
+    const response = await axios.post(baseUrl, newObject, config)
+    return {
+      success: true,
+      data: response.data
+    }
+  } catch (error) {
+    return {
+      success: false,
+      data: error.response ? error.response.data : error.message
+    }
+  }
+}
 
-  
-  export default { getAll, create, remove, update }
+const remove = (id) => {
+  console.log("id number", id)
+  const request = axios.delete(`${baseUrl}/${id}`)
+  return request.then(response => response.data)
+
+}
+
+const update = (id, newObject) => {
+  const request = axios.put(`${baseUrl}/${id}`, newObject)
+  return request.then(response => response.data)
+}
+
+
+export default { getAll, create, remove, update }

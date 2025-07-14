@@ -18,11 +18,18 @@ const Login = () => {
         })
             .then(response => response.json())
             .then(data => {
+                if (data.token) {
+                    if (data.token) {
+                        localStorage.setItem('token', data.token)
+                        console.log("TOKEN SAVED", data.token)
+                        window.location.href = 'http://localhost:5173/'
+                    }
+                }
                 console.log("response:", data);
             })
             .catch(error => {
                 console.error("login error:", error);
-            });
+            })
 
     }
 

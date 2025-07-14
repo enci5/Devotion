@@ -1,13 +1,13 @@
-const Entry = ({ heading, body }) => {
+const Entry = ({ title, content }) => {
 
-  if (heading || body) {
+  if (title || content) {
     return (
       <>
         <h2>
-          {heading}
+          {title}
         </h2>
         <p>
-          {body}
+          {content}
         </p>
       </>
     )
