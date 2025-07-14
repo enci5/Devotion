@@ -1,9 +1,11 @@
 POST http://localhost:3001/api/notes
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjg3NDJkNGYwOGEwM2JmNTk0NGQ0MWJkIiwiaWF0IjoxNzUyNDQ0MzEwLCJleHAiOjE3NTI0ODAzMTB9.jvoUpZasXwFSop-GzeFW9GH2WxByNkW7X0nNGrTvhM8
 
 {
-    "title":"the emerald ",
-    "content":"today i created 5000 crystals"
+    "title":"the ultimate banana ",
+    "content":"today i created 5000 banaynays",
+    "user_id": "6872c08d1a8be0011e8459dc"
 }
 
 ###

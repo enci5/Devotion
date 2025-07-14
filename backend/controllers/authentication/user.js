@@ -52,18 +52,18 @@ userRouter.post('/login', async (req, res) => {
 
         try {
             const { username, password } = req.body;
-            console.log("USERNAME, PASSWORD", username, password)
+            //console.log("USERNAME, PASSWORD", username, password)
             const user = await User.findOne({ username })
             if (!user) {
                 return res.status(401).json({ error: 'Invalid Username/Password, try again' })
             }
-            console.log("IS THE USER RIGHT?", user)
+            //console.log("IS THE USER RIGHT?", user)
     
             const passwordCorrect = await bcrypt.compare(password, user.passwordHash);
             if (!passwordCorrect) {
                 return res.status(401).json({ error: 'Authentication failed' });
             }
-            console.log("IS THE PASSWORD RIGHT?", passwordCorrect)
+            //console.log("IS THE PASSWORD RIGHT?", passwordCorrect)
     
             if (passwordCorrect) {
                 const payload = {
